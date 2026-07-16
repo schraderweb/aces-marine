@@ -146,7 +146,8 @@ body { font-family: 'Inter', 'Open Sans', sans-serif; margin: 0; padding: 0; scr
 .hero-inner { position: relative; z-index: 2; padding-top: calc(var(--nav-height) + 30px); }
 
 .logo-mark { display: flex; align-items: center; gap: 12px; }
-.logo-icon { font-size: 2.8rem; color: var(--color-accent-glow); line-height: 1; }
+.logo-icon { display: flex; }
+.logo-icon img { width: 48px; height: 48px; display: block; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); }
 .logo-text { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.6rem; color: var(--color-white); line-height: 1.1; letter-spacing: .06em; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
 .logo-text small { font-size: .65rem; font-weight: 400; letter-spacing: .15em; opacity: .85; display: block; }
 
@@ -255,7 +256,8 @@ body { font-family: 'Inter', 'Open Sans', sans-serif; margin: 0; padding: 0; scr
 .footer-social-btn:hover { transform: translateY(-2px); background-color: var(--color-accent); }
 
 .footer-logo { display: flex; align-items: center; gap: 10px; }
-.footer-logo-icon { font-size: 2rem; color: var(--color-accent-glow); line-height: 1; }
+.footer-logo-icon { display: flex; }
+.footer-logo-icon img { width: 36px; height: 36px; display: block; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4)); }
 .footer-logo-text { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--color-white); line-height: 1.2; letter-spacing: .05em; }
 .footer-logo-text small { font-size: .6rem; font-weight: 400; letter-spacing: .12em; opacity: .75; display: block; }
 
