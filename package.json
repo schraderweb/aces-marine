@@ -1,0 +1,13 @@
+{
+  "name": "aces-marine",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node demo/build.js",
+    "dev": "npx serve -p 3001",
+    "start": "npx serve -p 3001"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}
