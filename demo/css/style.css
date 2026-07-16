@@ -177,7 +177,7 @@ a { text-decoration: none; }
 
 .custom-shape-divider-bottom {
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   width: 100%;
   overflow: hidden;
@@ -369,7 +369,7 @@ a { text-decoration: none; }
 /* ══════════════════════════════════════════════
    REVIEWS CAROUSEL
    ══════════════════════════════════════════════ */
-.review-sec     { padding: 80px 0 120px; background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary)); position: relative; }
+.review-sec     { padding: 160px 0; background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary)); position: relative; }
 .review-sec h2  { color: var(--color-white); }
 .review-sec-sub { color: var(--color-text-light); font-size: 1rem; margin-bottom: 32px; }
 
@@ -512,7 +512,7 @@ a { text-decoration: none; }
   .arrow-prev        { left: 4px; }
   .arrow-next        { right: 4px; }
 
-  .review-sec            { padding: 50px 0; }
+  .review-sec            { padding: 100px 0; }
   .review-card           { flex: 0 0 100%; }
   .review-carousel-outer { padding: 0 36px; }
   .review-arrow          { width: 32px; height: 32px; font-size: 1.4rem; }
