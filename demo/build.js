@@ -7,10 +7,12 @@ const partials = [
   '_nav.html',
   '_hero.html',
   '_about.html',
-  '_services.html',
+  '_expertise.html',
   '_reviews.html',
   '_projects.html',
+  '_badges.html',
   '_serving.html',
+  '_map.html',
   '_footer.html',
   '_scripts.html',
 ];

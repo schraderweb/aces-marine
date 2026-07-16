@@ -1,4 +1,94 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/demo/js/main.js"></script>
+
+    <script>
+      function initServiceMap() {
+        const serviceAreas = [
+          { county: "Grand Traverse", fips: "26055", area: "Traverse City",     lat: 44.7631, lng: -85.6206 },
+          { county: "Benzie",         fips: "26019", area: "Frankfort / Beulah", lat: 44.6342, lng: -86.2345 },
+          { county: "Leelanau",       fips: "26089", area: "Suttons Bay / Leland", lat: 44.9808, lng: -85.7683 }
+        ];
+
+        const map = new google.maps.Map(document.getElementById('map'), {
+          mapTypeId: 'roadmap'
+        });
+
+        const bounds = new google.maps.LatLngBounds();
+
+        serviceAreas.forEach(location => {
+          const marker = new google.maps.Marker({
+            position: { lat: location.lat, lng: location.lng },
+            map,
+            title: location.county
+          });
+
+          const info = new google.maps.InfoWindow({
+            content: '<b>' + location.county + ' County</b><br>' + location.area
+          });
+
+          marker.addListener('click', () => info.open(map, marker));
+          bounds.extend(marker.getPosition());
+        });
+
+        /* Load turf & county boundaries */
+        Promise.all([
+          fetch('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json').then(r => r.json()),
+          new Promise(resolve => {
+            const s = document.createElement('script');
+            s.src = 'https://unpkg.com/@turf/turf@6/turf.min.js';
+            s.onload = resolve;
+            document.head.appendChild(s);
+          })
+        ]).then(([data]) => {
+          const fipsSet = serviceAreas.map(s => s.fips);
+          const features = data.features.filter(f => fipsSet.includes(f.id));
+          const merged = features.reduce((acc, f) => {
+            if (!acc) return f;
+            return turf.union(acc, f);
+          }, null);
+
+          function coordsToPath(coords) {
+            return coords.map(c => ({ lat: c[1], lng: c[0] }));
+          }
+
+          function getRings(geom) {
+            if (geom.type === 'Polygon') return [geom.coordinates[0]];
+            const rings = [];
+            geom.coordinates.forEach(p => rings.push(p[0]));
+            return rings;
+          }
+
+          const outerRings = getRings(merged.geometry);
+
+          outerRings.forEach(ring => {
+            new google.maps.Polygon({
+              paths: coordsToPath(ring),
+              fillColor: '#3182CE',
+              fillOpacity: 0.35,
+              strokeColor: '#2C5282',
+              strokeWeight: 3,
+              strokeOpacity: 1,
+              strokeDashPattern: [12, 8],
+              map
+            });
+          });
+
+          map.addListener('click', (e) => {
+            const pt = { lat: e.latLng.lat(), lng: e.latLng.lng() };
+            if (turf.booleanPointInPolygon(pt, merged)) {
+              new google.maps.InfoWindow({
+                content: '<b>Aces Marine Service Area</b><br>Northern Michigan'
+              }).open(map, null, e.latLng);
+            }
+          });
+        });
+
+        map.fitBounds(bounds, { top: 80, bottom: 80, left: 80, right: 80 });
+        google.maps.event.addListenerOnce(map, "bounds_changed", () => {
+          if (map.getZoom() > 10) map.setZoom(10);
+        });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWFkc2FRIzJamD-jbq7motf2o7qo_CmS4&callback=initServiceMap"></script>
   </body>
 </html>

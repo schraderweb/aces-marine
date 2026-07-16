@@ -1,92 +1,201 @@
-/* ── Hamburger ── */
-const hamburger = document.getElementById('hamburger');
-const overlay   = document.getElementById('overlay');
-const drawer    = document.getElementById('drawer');
-const closeBtn  = document.getElementById('closeBtn');
-const hamIcon   = document.getElementById('hamIcon');
+(function() {
 
-function openDrawer() {
-  drawer.classList.add('open'); overlay.style.display = 'block';
-  document.body.style.overflow = 'hidden';
-}
-function closeDrawer() {
-  drawer.classList.remove('open'); overlay.style.display = 'none';
-  document.body.style.overflow = '';
-}
-hamburger?.addEventListener('click', openDrawer);
-closeBtn?.addEventListener('click', closeDrawer);
-overlay?.addEventListener('click', closeDrawer);
+  /* ── Mobile Drawer ── */
+  const hamburger = document.getElementById('hamburger');
+  const hamIcon   = document.getElementById('hamIcon');
+  const drawer    = document.getElementById('drawer');
+  const overlay   = document.getElementById('overlay');
+  const closeBtn  = document.getElementById('closeBtn');
 
-/* ── Review Carousel ── */
-const track      = document.getElementById('reviewTrack');
-const prevBtn    = document.getElementById('reviewPrev');
-const nextBtn    = document.getElementById('reviewNext');
-const dots       = document.getElementById('reviewDots');
-let scrollPos = 0;
-
-function updateReviewDots() {
-  if (!track || !dots) return;
-  const cards  = track.querySelectorAll('.review-card');
-  const gap    = 16;
-  const visW   = track.clientWidth;
-  const cardW  = cards[0]?.offsetWidth + gap || 0;
-  const total  = cardW * cards.length - gap;
-  const max    = Math.max(0, total - visW + gap);
-  scrollPos = Math.max(0, Math.min(scrollPos, max));
-  const count  = Math.max(1, Math.ceil((total) / visW));
-  dots.innerHTML = '';
-  for (let i = 0; i < count; i++) {
-    const d = document.createElement('span');
-    d.className = 'review-dot' + (i === Math.round(scrollPos / (max || 1) * (count - 1)) ? ' active' : '');
-    d.addEventListener('click', () => {
-      const frac = i / (count - 1); scrollPos = frac * max;
-      track.scrollTo({ left: scrollPos, behavior: 'smooth' });
-    });
-    dots.appendChild(d);
+  function openDrawer() {
+    drawer.classList.add('open');
+    overlay.classList.add('active');
+    hamIcon.className = 'bi bi-x-lg';
+    document.body.style.overflow = 'hidden';
   }
-}
-prevBtn?.addEventListener('click', () => {
-  const cardW = track.querySelector('.review-card')?.offsetWidth + 16 || 300;
-  scrollPos = Math.max(0, scrollPos - cardW * 1);
-  track.scrollTo({ left: scrollPos, behavior: 'smooth' });
-});
-nextBtn?.addEventListener('click', () => {
-  const cardW = track.querySelector('.review-card')?.offsetWidth + 16 || 300;
-  const max   = track.scrollWidth - track.clientWidth;
-  scrollPos = Math.min(max, scrollPos + cardW * 1);
-  track.scrollTo({ left: scrollPos, behavior: 'smooth' });
-});
-track?.addEventListener('scroll', () => { scrollPos = track.scrollLeft; updateReviewDots(); });
-window.addEventListener('resize', updateReviewDots);
-setTimeout(updateReviewDots, 200);
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('active');
+    hamIcon.className = 'bi bi-list';
+    document.body.style.overflow = '';
+  }
 
-/* ── Project Carousel ── */
-let slideIdx = 0;
+  if (hamburger) {
+    hamburger.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
+  }
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  if (overlay)  overlay.addEventListener('click', closeDrawer);
 
-function slideCarousel(dir) {
-  const wrapper = document.getElementById('carouselWrapper');
-  if (!wrapper) return;
-  const cards = wrapper.querySelectorAll('.project-card');
-  if (!cards.length) return;
-  const gap   = 16;
-  const cardW = cards[0].offsetWidth + gap;
-  const total = cardW * cards.length - gap;
-  const visW  = wrapper.clientWidth;
-  const max   = Math.max(0, total - visW + gap);
-  slideIdx = Math.max(0, Math.min(max, slideIdx + dir * cardW));
-  wrapper.scrollTo({ left: slideIdx, behavior: 'smooth' });
-}
-
-/* ── Smooth scroll for anchor links ── */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    const id = this.getAttribute('href');
-    if (id === '#') return;
-    const el = document.querySelector(id);
-    if (el) {
-      e.preventDefault();
-      el.scrollIntoView({ behavior: 'smooth' });
-      closeDrawer();
-    }
+  /* Close drawer on nav link click */
+  document.querySelectorAll('.m-nav-btn').forEach(link => {
+    link.addEventListener('click', closeDrawer);
   });
-});
+
+  /* ── Review Carousel ── */
+  (function() {
+    const track    = document.getElementById('reviewTrack');
+    const dotsWrap = document.getElementById('reviewDots');
+    const prevBtn  = document.getElementById('reviewPrev');
+    const nextBtn  = document.getElementById('reviewNext');
+    if (!track || !dotsWrap || !prevBtn || !nextBtn) return;
+
+    const cards = track.querySelectorAll('.review-card');
+    let current = 0;
+    let autoTimer = null;
+    let visibleCount = getVisible();
+    const total = cards.length;
+
+    function getVisible() {
+      return window.innerWidth < 576 ? 1 : window.innerWidth < 992 ? 2 : 3;
+    }
+
+    function buildDots() {
+      visibleCount = getVisible();
+      dotsWrap.innerHTML = '';
+      const pages = total - visibleCount + 1;
+      for (let i = 0; i < pages; i++) {
+        const d = document.createElement('span');
+        d.className = 'review-dot' + (i === current ? ' active' : '');
+        d.addEventListener('click', () => { goTo(i); resetAuto(); });
+        dotsWrap.appendChild(d);
+      }
+    }
+
+    function goTo(index) {
+      visibleCount = getVisible();
+      const pages = total - visibleCount + 1;
+      current = Math.max(0, Math.min(index, pages - 1));
+      const cardW = cards[0].offsetWidth + 20;
+      track.scrollTo({ left: cardW * current, behavior: 'smooth' });
+      dotsWrap.querySelectorAll('.review-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function next() { goTo(current + 1 < total - visibleCount + 1 ? current + 1 : 0); }
+    function prev() { goTo(current > 0 ? current - 1 : total - visibleCount); }
+
+    function startAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(next, 3500);
+    }
+    function resetAuto() { clearInterval(autoTimer); startAuto(); }
+
+    prevBtn.addEventListener('click', () => { prev(); resetAuto(); });
+    nextBtn.addEventListener('click', () => { next(); resetAuto(); });
+
+    track.addEventListener('scroll', () => {
+      const cardW = cards[0].offsetWidth + 20;
+      current = Math.round(track.scrollLeft / cardW);
+      dotsWrap.querySelectorAll('.review-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    });
+
+    track.addEventListener('touchstart', () => clearInterval(autoTimer));
+    track.addEventListener('touchend', startAuto);
+
+    window.addEventListener('resize', () => { buildDots(); goTo(0); });
+
+    buildDots();
+    startAuto();
+  })();
+
+  /* ── Projects Carousel ── */
+  (function() {
+    let currentSlide = 0;
+    let autoPlayTimer = null;
+    let isDragging = false;
+    let dragStartX = 0;
+    let scrollStart = 0;
+    let hasDragged = false;
+
+    const wrapper = document.getElementById('carouselWrapper');
+    const dots    = document.querySelectorAll('.dot');
+    if (!wrapper || !dots.length) return;
+
+    const cards   = wrapper.querySelectorAll('.project-card');
+    const total   = cards.length;
+
+    function isMobile() { return window.innerWidth <= 991; }
+
+    function updateDots() {
+      dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+    }
+
+    function goToSlide(index) {
+      currentSlide = ((index % total) + total) % total;
+      const cardWidth = cards[0].offsetWidth + 16;
+      wrapper.scrollTo({ left: cardWidth * currentSlide, behavior: 'smooth' });
+      updateDots();
+    }
+
+    window.slideCarousel = function(dir) { goToSlide(currentSlide + dir); resetAutoPlay(); };
+    window.goToSlide = goToSlide;
+
+    wrapper.addEventListener('scroll', () => {
+      const cardWidth = cards[0].offsetWidth + 16;
+      currentSlide = Math.round(wrapper.scrollLeft / cardWidth);
+      updateDots();
+    });
+
+    wrapper.addEventListener('mousedown', (e) => {
+      isDragging  = true;
+      hasDragged  = false;
+      dragStartX  = e.pageX;
+      scrollStart = wrapper.scrollLeft;
+      wrapper.style.cursor = 'grabbing';
+      wrapper.style.userSelect = 'none';
+      clearInterval(autoPlayTimer);
+      e.preventDefault();
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const delta = dragStartX - e.pageX;
+      if (Math.abs(delta) > 5) hasDragged = true;
+      wrapper.scrollLeft = scrollStart + delta;
+    });
+
+    window.addEventListener('mouseup', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      wrapper.style.cursor = '';
+      wrapper.style.userSelect = '';
+      const cardWidth = cards[0].offsetWidth + 16;
+      currentSlide = Math.round(wrapper.scrollLeft / cardWidth);
+      goToSlide(currentSlide);
+      startAutoPlay();
+      if (hasDragged) e.stopPropagation();
+    });
+
+    wrapper.addEventListener('touchstart', () => clearInterval(autoPlayTimer), { passive: true });
+    wrapper.addEventListener('touchend', startAutoPlay, { passive: true });
+
+    function startAutoPlay() {
+      clearInterval(autoPlayTimer);
+      autoPlayTimer = setInterval(() => goToSlide(currentSlide + 1), 3000);
+    }
+    function resetAutoPlay() { clearInterval(autoPlayTimer); startAutoPlay(); }
+
+    function toggleControls() {
+      document.querySelectorAll('.carousel-arrow, .carousel-dots').forEach(el => {
+        el.style.display = isMobile() ? '' : 'none';
+      });
+    }
+
+    toggleControls();
+    window.addEventListener('resize', toggleControls);
+    startAutoPlay();
+  })();
+
+  /* ── Smooth scroll for anchor links ── */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const id = this.getAttribute('href');
+      if (id === '#') return;
+      const el = document.querySelector(id);
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+})();
