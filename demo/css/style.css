@@ -1337,7 +1337,10 @@ textarea:focus {
    ══════════════════════════════════════════════ */
 .review-sec {
   padding: 220px 0 180px;
-  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  background-image: linear-gradient(rgba(7, 21, 38, 0.8), rgba(7, 21, 38, 0.8)), url('/demo/images/image-review-section.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Parallax effect optional, but let's just keep it simple first without attachment fixed if it's wavy */
   position: relative;
 }
 
