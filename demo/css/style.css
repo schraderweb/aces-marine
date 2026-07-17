@@ -452,7 +452,7 @@ a {
 }
 
 .hero-wave-1 .shape-fill {
-  fill: #FFFFFF;
+  fill: #E1F0FF;
 }
 
 .hero-wave-2 {
@@ -474,8 +474,8 @@ a {
 }
 
 .hero-wave-2 .shape-fill {
-  fill: #FFFFFF;
-  opacity: 0.5;
+  fill: #E1F0FF;
+  opacity: 1;
 }
 
 .hero-wave-3 {
@@ -497,8 +497,8 @@ a {
 }
 
 .hero-wave-3 .shape-fill {
-  fill: #FFFFFF;
-  opacity: 0.25;
+  fill: #E1F0FF;
+  opacity: 1;
 }
 
 .logo {
