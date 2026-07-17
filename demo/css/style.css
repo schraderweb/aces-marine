@@ -839,8 +839,8 @@ textarea:focus {
 }
 
 .services-content .container {
-  max-width: 1200px;
-  width: 90%;
+  max-width: 1440px;
+  width: 96%;
   margin: 0 auto;
 }
 
@@ -866,10 +866,17 @@ textarea:focus {
   opacity: 0.3;
 }
 
-.services-subtitle-icon {
-  color: var(--color-primary);
+/* --- Logo icon above subtitle --- */
+.services-logo-icon {
   display: flex;
-  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.services-logo-icon__img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
 }
 
 .services-subtitle-text {
@@ -883,22 +890,22 @@ textarea:focus {
 
 .services-title {
   font-family: 'Inter', sans-serif;
-  font-size: 2.6rem;
+  font-size: 3rem;
   font-weight: 800;
   line-height: 1.2;
   color: var(--color-primary);
-  margin: 0 0 16px;
+  margin: 0 0 18px;
 }
 
 .services-title--secondary {
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 2.3rem;
   color: var(--color-primary-mid);
 }
 
 .services-description {
   font-family: 'Open Sans', sans-serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.7;
   color: var(--color-text-body);
   margin: 0;
@@ -908,21 +915,21 @@ textarea:focus {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-bottom: 48px;
+  gap: 24px;
+  margin-bottom: 56px;
 }
 
 /* --- Individual Service Card --- */
 .service-card {
   position: relative;
   display: block;
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
+  min-height: 440px;
   text-decoration: none;
   color: #fff;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
@@ -975,7 +982,7 @@ textarea:focus {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 20px 22px;
+  padding: 24px 28px;
   z-index: 2;
 }
 
@@ -983,32 +990,32 @@ textarea:focus {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .service-card__title {
   font-family: 'Inter', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #fff;
-  margin: 0 0 4px;
+  margin: 0 0 6px;
   line-height: 1.3;
 }
 
 .service-card__desc {
   font-family: 'Open Sans', sans-serif;
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.82);
-  line-height: 1.4;
-  margin: 0 0 8px;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+  margin: 0 0 10px;
 }
 
 .service-card__link {
@@ -1016,7 +1023,7 @@ textarea:focus {
   align-items: center;
   gap: 6px;
   font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: #fff;
   text-decoration: none;
@@ -1044,14 +1051,14 @@ textarea:focus {
 .services-cta__btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 36px;
+  gap: 12px;
+  padding: 16px 42px;
   border-radius: 50px;
   border: 2px solid var(--color-primary);
   background: var(--color-primary);
   color: #fff;
   font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -1089,15 +1096,19 @@ textarea:focus {
 @media (max-width: 1024px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 18px;
   }
 
   .services-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .services-title--secondary {
-    font-size: 1.6rem;
+    font-size: 1.75rem;
+  }
+
+  .services-content .container {
+    width: 94%;
   }
 }
 
@@ -1108,15 +1119,19 @@ textarea:focus {
 
   .services-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 16px;
   }
 
   .services-title {
-    font-size: 1.6rem;
+    font-size: 1.75rem;
   }
 
   .services-title--secondary {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+  }
+
+  .services-description {
+    font-size: 0.95rem;
   }
 
   .services-description br {
@@ -1128,12 +1143,20 @@ textarea:focus {
   }
 
   .service-card {
-    aspect-ratio: 16 / 10;
+    min-height: 300px;
+  }
+
+  .service-card__title {
+    font-size: 1.1rem;
   }
 
   .services-cta__btn {
-    padding: 12px 28px;
-    font-size: 0.78rem;
+    padding: 13px 30px;
+    font-size: 0.8rem;
+  }
+
+  .services-content .container {
+    width: 92%;
   }
 }
 
