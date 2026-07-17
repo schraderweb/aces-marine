@@ -381,7 +381,7 @@ a {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
-  height: 94px;
+  height: 47px;
 }
 
 .custom-shape-divider-bottom .shape-fill {
@@ -794,7 +794,7 @@ textarea:focus {
   background: var(--color-bg-light);
   position: relative;
   padding-top: 60px;
-  padding-bottom: 140px;
+  padding-bottom: 100px;
 }
 
 .section-expertise .card {
@@ -1028,7 +1028,7 @@ textarea:focus {
    REVIEWS CAROUSEL
    ══════════════════════════════════════════════ */
 .review-sec {
-  padding: 260px 0 220px;
+  padding: 160px 0 180px;
   background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
   position: relative;
 }
@@ -1610,7 +1610,7 @@ textarea:focus {
   }
 
   .review-sec {
-    padding: 100px 0;
+    padding: 80px 0;
   }
 
   .review-card {
