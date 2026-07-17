@@ -408,6 +408,31 @@ a {
   fill: #E6F3FF;
 }
 
+.custom-shape-divider-top {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 3;
+}
+
+.custom-shape-divider-top svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 47px;
+}
+
+.custom-shape-divider-top .shape-fill {
+  fill: #FFFFFF;
+}
+
+.custom-shape-divider-top.fill-light .shape-fill {
+  fill: #D6EDFF;
+}
+
 .hero-wave-1 {
   position: absolute;
   bottom: 0;
@@ -427,7 +452,7 @@ a {
 }
 
 .hero-wave-1 .shape-fill {
-  fill: #FFFFFF;
+  fill: #E1F0FF;
 }
 
 .hero-wave-2 {
@@ -449,8 +474,8 @@ a {
 }
 
 .hero-wave-2 .shape-fill {
-  fill: #FFFFFF;
-  opacity: 0.5;
+  fill: #E1F0FF;
+  opacity: 1;
 }
 
 .hero-wave-3 {
@@ -472,8 +497,8 @@ a {
 }
 
 .hero-wave-3 .shape-fill {
-  fill: #FFFFFF;
-  opacity: 0.25;
+  fill: #E1F0FF;
+  opacity: 1;
 }
 
 .logo {
