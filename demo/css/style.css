@@ -1779,7 +1779,7 @@ textarea:focus {
 .serving-areas-sec {
   position: relative;
   padding: 48px 0 80px;
-  background-color: var(--color-primary-dark);
+  background-color: #F5F0E6;
 }
 
 .serving-bg-overlay {
@@ -1809,7 +1809,7 @@ textarea:focus {
 }
 
 .serving-areas-text {
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--color-text-body);
   font-size: 15px;
   line-height: 1.9;
   letter-spacing: 0.02em;
@@ -1818,7 +1818,7 @@ textarea:focus {
 .serving-areas-text span {
   display: inline-block;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-text-navy);
   margin: 0 4px;
   font-size: 16px;
   letter-spacing: 0.01em;
