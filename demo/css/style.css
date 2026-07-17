@@ -16,7 +16,7 @@
   --color-text-body: #4A5568;
   --color-text-light: #cbd5e1;
   --color-text-muted: rgba(255, 255, 255, 0.78);
-  --color-bg-light: #F0F4F8;
+  --color-bg-light: #D6EDFF;
   --color-bg-hover-nav: rgba(255, 255, 255, 0.18);
   --glass-bg: rgba(255, 255, 255, 0.1);
   --glass-border: rgba(255, 255, 255, 0.2);
@@ -389,7 +389,7 @@ a {
 }
 
 .custom-shape-divider-bottom.fill-light .shape-fill {
-  fill: #F0F4F8;
+  fill: #D6EDFF;
 }
 
 .custom-shape-divider-bottom.fill-dark .shape-fill {
@@ -402,6 +402,10 @@ a {
 
 .custom-shape-divider-bottom.fill-blue-light .shape-fill {
   fill: #E8F0FE;
+}
+
+.custom-shape-divider-bottom.fill-projects .shape-fill {
+  fill: #E6F3FF;
 }
 
 .hero-wave-1 {
@@ -663,7 +667,7 @@ textarea:focus {
    ABOUT / COMPANY
    ══════════════════════════════════════════════ */
 .company-section {
-  background: #F4F8FC;
+  background: #E1F0FF;
   position: relative;
   padding-bottom: 100px;
 }
@@ -678,7 +682,7 @@ textarea:focus {
 }
 
 .about-content-bg {
-  background-color: #F4F8FC;
+  background-color: #E1F0FF;
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
@@ -797,7 +801,7 @@ textarea:focus {
    ══════════════════════════════════════════════ */
 .services-section {
   position: relative;
-  background: #F0F4F8;
+  background: #D6EDFF;
   overflow: hidden;
 }
 
@@ -850,7 +854,7 @@ textarea:focus {
   position: relative;
   z-index: 2;
   padding: 40px 0 100px;
-  background: #F0F4F8;
+  background: #D6EDFF;
 }
 
 .services-content .container {
@@ -1209,7 +1213,7 @@ textarea:focus {
    ══════════════════════════════════════════════ */
 .projects-gallery-section {
   padding: 160px 0 220px;
-  background: var(--color-white);
+  background: #E6F3FF;
   position: relative;
 }
 
@@ -1695,7 +1699,7 @@ textarea:focus {
    ══════════════════════════════════════════════ */
 .serving-areas-sec {
   position: relative;
-  padding: 80px 0 120px;
+  padding: 48px 0 80px;
   background-color: var(--color-primary-dark);
 }
 
@@ -1709,13 +1713,26 @@ textarea:focus {
 }
 
 .serving-areas-container {
-  margin-top: 48px;
+  margin-top: 32px;
+}
+
+.serving-areas-sec h2 {
+  font-size: 1.6rem;
+}
+
+.serving-areas-sec h3 {
+  font-size: 1.15rem;
+}
+
+.serving-areas-sec .display-6 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem !important;
 }
 
 .serving-areas-text {
   color: rgba(255, 255, 255, 0.75);
-  font-size: 18px;
-  line-height: 2.4;
+  font-size: 15px;
+  line-height: 1.9;
   letter-spacing: 0.02em;
 }
 
@@ -1723,8 +1740,8 @@ textarea:focus {
   display: inline-block;
   font-weight: 700;
   color: #ffffff;
-  margin: 0 6px;
-  font-size: 20px;
+  margin: 0 4px;
+  font-size: 16px;
   letter-spacing: 0.01em;
 }
 
@@ -2027,11 +2044,11 @@ textarea:focus {
   }
 
   .serving-areas-sec {
-    padding: 40px 0;
+    padding: 28px 0;
   }
 
   .serving-areas-sec h3 {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .stat-circle {
