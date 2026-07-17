@@ -1,19 +1,18 @@
       <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
       <section class="hero-section" id="home">
         <div class="hero-bg"></div>
+        <video class="hero-video" autoplay muted loop playsinline poster="/demo/images/hero-bg.webp">
+          <source src="/hero-section-video.mp4" type="video/mp4">
+        </video>
         <div class="container-fluid hero-inner">
           <div class="row align-items-start gx-2">
 
             <!-- Left Content -->
-            <div class="col-md-7 col-12">
-              <div class="hero-content ms-md-5 ms-0 px-3 px-md-0">
+            <div class="col-md-8 col-12">
+              <div class="right-side-section me-md-5 me-0 ms-md-4 ms-0 px-3 px-md-0">
 
-                <div class="logo-mark mb-4">
-                  <span class="logo-icon">&#9873;</span>
-                  <span class="logo-text">
-                    ACES MARINE<br>
-                    <small>& SALVAGE</small>
-                  </span>
+                <div class="logo-wrapper mt-5">
+                  <div class="logo" style="background-image: url('/assets/logo/logo.webp');"></div>
                 </div>
 
                 <h1 class="hero-title mb-3">
@@ -32,14 +31,14 @@
             </div>
 
             <!-- Right Form -->
-            <div class="col-md-5 col-12 mt-4 mt-md-0">
-              <div class="form-container mt-5" id="contact">
-                <div class="appointment-card p-4">
+            <div class="col-md-4 col-12 mt-4 mt-md-0">
+                <div class="form-container mt-5" id="contact">
+                  <div class="appointment-card p-4">
                   <p class="text-center mb-1 fw-semibold">Get a</p>
                   <div class="text-center mb-3">
                     <span class="appointment-pill d-inline-block">Free Estimate</span>
                   </div>
-                  <form id="estimateForm">
+                  <form id="estimateForm" action="#" method="POST">
                     <div class="row g-2">
                       <div class="col-6">
                         <input class="form-control rounded-input" placeholder="First Name *" aria-label="First Name" name="firstName" required />
@@ -57,6 +56,9 @@
                       </div>
                     </div>
                     <div class="mt-2">
+                      <input class="form-control rounded-input" placeholder="Zip Code *" aria-label="Zip Code" name="zip" required />
+                    </div>
+                    <div class="mt-2">
                       <select class="form-select rounded-input" aria-label="Service Needed" name="service">
                         <option value="" selected disabled>Service Needed?</option>
                         <option value="dock-sales">Dock Sales & Design</option>
@@ -65,6 +67,17 @@
                         <option value="dive">Dive Services</option>
                         <option value="repair">Dock & Lift Repair</option>
                         <option value="barging">Barging & Transport</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                    <div class="mt-2">
+                      <select class="form-select rounded-input" aria-label="How Did You Hear About Us?" name="referral">
+                        <option value="" selected disabled>How Did You Hear About Us?</option>
+                        <option value="facebook">Facebook</option>
+                        <option value="google-search">Google Search</option>
+                        <option value="google-ad">Google Ad</option>
+                        <option value="referral">Referral</option>
+                        <option value="nextdoor">Nextdoor</option>
                         <option value="other">Other</option>
                       </select>
                     </div>
@@ -80,5 +93,20 @@
             </div>
 
           </div>
+        </div>
+        <div class="hero-wave-1">
+          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+          </svg>
+        </div>
+        <div class="hero-wave-2">
+          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+          </svg>
+        </div>
+        <div class="hero-wave-3">
+          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+          </svg>
         </div>
       </section>

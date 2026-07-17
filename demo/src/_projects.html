@@ -1,78 +1,129 @@
-      <!-- ═══════════════════════════ PROJECTS CAROUSEL ═══════════════════════════ -->
-      <section class="modern-carousel-section" id="projects">
-        <div class="mb-2"><h2>Our Recent Work</h2></div>
+<!-- ═══════════════════════════ PROJECTS GALLERY ═══════════════════════════ -->
+<section class="projects-gallery-section" id="projects">
+  <div class="container">
+    <div class="projects-header text-center mb-5">
+      <span class="projects-subtitle">OUR RECENT WORK</span>
+      <div class="waves-divider">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 15" width="40" height="8">
+          <path d="M0 7.5 Q12.5 0 25 7.5 T50 7.5 T75 7.5 T100 7.5" fill="none" stroke="#1a3a5c" stroke-width="2" />
+          <path d="M0 12.5 Q12.5 5 25 12.5 T50 12.5 T75 12.5 T100 12.5" fill="none" stroke="#3182ce" stroke-width="2" opacity="0.6" />
+        </svg>
+      </div>
+      <h2 class="projects-main-title mt-3">Built for the Water. Backed by Experience.</h2>
+      <p class="projects-desc mx-auto">From custom dock installations to full-scale marine salvage, explore some of our recent projects across Northern Michigan.</p>
+    </div>
 
-        <div class="carousel-outer">
-
-          <div class="carousel-wrapper" id="carouselWrapper">
-
-            <div class="project-card">
-              <img src="https://images.unsplash.com/photo-1560732488-6b0df240254a?w=400&q=80" alt="Dock Installation">
-              <div class="card-content">
-                <span class="tag" style="background:#3182CE;color:#fff;">Dock</span>
-                <h3>Custom ShoreStation Dock</h3>
-                <p>Complete dock system installation on Lake Leelanau with integrated boat lift.</p>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <img src="https://images.unsplash.com/photo-1531429616612-6e1b8e32617a?w=400&q=80" alt="Boat Lift Installation">
-              <div class="card-content">
-                <span class="tag" style="background:#2C5282;color:#fff;">Lift</span>
-                <h3>FLOE Boat Lift Install</h3>
-                <p>Heavy-duty FLOE lift installation for a 26-foot cruiser on Grand Traverse Bay.</p>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <img src="https://images.unsplash.com/photo-1599571234908-29ed5d10227f?w=400&q=80" alt="Marine Salvage">
-              <div class="card-content">
-                <span class="tag" style="background:#0C2340;color:#fff;">Salvage</span>
-                <h3>Vessel Recovery Operation</h3>
-                <p>Full salvage and recovery of a submerged sailboat in Elk Lake.</p>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <img src="https://images.unsplash.com/photo-1551161188-bf70fc1e7fcc?w=400&q=80" alt="Dock Repair">
-              <div class="card-content">
-                <span class="tag" style="background:#4299E1;color:#fff;">Repair</span>
-                <h3>Winter-Damaged Dock Repair</h3>
-                <p>Structural repair and reinforcement of an ice-damaged dock system on Lake Michigan.</p>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <img src="https://images.unsplash.com/photo-1560976812-c8eacae027e4?w=400&q=80" alt="Barging">
-              <div class="card-content">
-                <span class="tag" style="background:#1A3A5C;color:#fff;">Transport</span>
-                <h3>Equipment Barging</h3>
-                <p>Over-water transport of construction materials across Torch Lake for a private development.</p>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <img src="https://images.unsplash.com/photo-1518834105622-1e86b43dff10?w=400&q=80" alt="Dive Inspection">
-              <div class="card-content">
-                <span class="tag" style="background:#3182CE;color:#fff;">Dive</span>
-                <h3>Mooring Inspection & Rechaining</h3>
-                <p>Underwater inspection and mooring chain replacement at the Northport Yacht Club.</p>
-              </div>
-            </div>
-
+    <div class="projects-grid">
+      <!-- Card 1: Dock Installation -->
+      <div class="gallery-card">
+        <img src="/demo/images/project-dock.webp" alt="Dock Installation" class="gallery-card__img">
+        <div class="gallery-card__overlay">
+          <div class="gallery-card__badge">
+            <i class="bi bi-house-door-fill"></i>
           </div>
-
-          <button class="carousel-arrow arrow-prev" id="arrowPrev" onclick="slideCarousel(-1)">&#8249;</button>
-          <button class="carousel-arrow arrow-next" id="arrowNext" onclick="slideCarousel(1)">&#8250;</button>
-
-          <div class="carousel-dots" id="carouselDots">
-            <span class="dot active" onclick="goToSlide(0)"></span>
-            <span class="dot" onclick="goToSlide(1)"></span>
-            <span class="dot" onclick="goToSlide(2)"></span>
-            <span class="dot" onclick="goToSlide(3)"></span>
-            <span class="dot" onclick="goToSlide(4)"></span>
-            <span class="dot" onclick="goToSlide(5)"></span>
+          <div class="gallery-card__info">
+            <h4 class="gallery-card__title">Dock Installation</h4>
+            <span class="gallery-card__location">Torch Lake, MI</span>
           </div>
-
         </div>
-      </section>
+      </div>
+
+      <!-- Card 2: Boat Lift Installation (Tall) -->
+      <div class="gallery-card tall-card">
+        <img src="/demo/images/project-lift.webp" alt="Boat Lift Installation" class="gallery-card__img">
+        <div class="gallery-card__overlay">
+          <div class="gallery-card__badge">
+            <i class="bi bi-anchor"></i>
+          </div>
+          <div class="gallery-card__info">
+            <h4 class="gallery-card__title">Boat Lift Installation</h4>
+            <span class="gallery-card__location">Grand Traverse Bay, MI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Marine Salvage -->
+      <div class="gallery-card">
+        <img src="/demo/images/project-salvage.webp" alt="Marine Salvage" class="gallery-card__img">
+        <div class="gallery-card__overlay">
+          <div class="gallery-card__badge">
+            <i class="bi bi-life-preserver"></i>
+          </div>
+          <div class="gallery-card__info">
+            <h4 class="gallery-card__title">Marine Salvage</h4>
+            <span class="gallery-card__location">Lake Leelanau, MI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Dock Repair -->
+      <div class="gallery-card">
+        <img src="/demo/images/project-repair.webp" alt="Dock Repair" class="gallery-card__img">
+        <div class="gallery-card__overlay">
+          <div class="gallery-card__badge">
+            <i class="bi bi-wrench-adjustable"></i>
+          </div>
+          <div class="gallery-card__info">
+            <h4 class="gallery-card__title">Dock Repair</h4>
+            <span class="gallery-card__location">Spider Lake, MI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Marine Diving Services -->
+      <div class="gallery-card">
+        <img src="/demo/images/project-dive.webp" alt="Marine Diving Services" class="gallery-card__img">
+        <div class="gallery-card__overlay">
+          <div class="gallery-card__badge">
+            <i class="bi bi-water"></i>
+          </div>
+          <div class="gallery-card__info">
+            <h4 class="gallery-card__title">Marine Diving Services</h4>
+            <span class="gallery-card__location">Elk Lake, MI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: Dock Construction -->
+      <div class="gallery-card">
+        <img src="/demo/images/project-dock.webp" alt="Dock Construction" class="gallery-card__img">
+        <div class="gallery-card__overlay">
+          <div class="gallery-card__badge">
+            <i class="bi bi-hammer"></i>
+          </div>
+          <div class="gallery-card__info">
+            <h4 class="gallery-card__title">Dock Construction</h4>
+            <span class="gallery-card__location">Crystal Lake, MI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7: Barge & Transport -->
+      <div class="gallery-card">
+        <img src="/demo/images/project-transport.webp" alt="Barge & Transport" class="gallery-card__img">
+        <div class="gallery-card__overlay">
+          <div class="gallery-card__badge">
+            <i class="bi bi-truck"></i>
+          </div>
+          <div class="gallery-card__info">
+            <h4 class="gallery-card__title">Barge & Transport</h4>
+            <span class="gallery-card__location">Northern Michigan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="#contact" class="btn btn-gallery-cta">
+        VIEW FULL GALLERY <i class="bi bi-arrow-right ms-2"></i>
+      </a>
+    </div>
+  </div>
+  <div class="custom-shape-divider-bottom fill-blue-light">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+      <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+      <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+    </svg>
+  </div>
+</section>
