@@ -166,8 +166,8 @@
                   <div class="logo-wrapper m-0">
                     <div class="logo m-0" style="background-image: url('/assets/logo/logo.webp');"></div>
                   </div>
-                  <h1 class="hero-title m-0" style="display: inline-block !important;">
-                    <span class="hero-title-text" style="display: inline-block;">
+                  <h1 class="hero-title m-0 text-center">
+                    <span class="hero-title-text text-center">
                       Gallery Of <span>Recent Projects</span>
                     </span>
                   </h1>
@@ -342,6 +342,7 @@
 <!-- Lightbox Modal -->
 <div class="gallery-lightbox" id="galleryLightbox">
   <div class="lightbox-overlay"></div>
+  <div class="lightbox-counter" id="lightboxCounter">1 / 8</div>
   <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox"><i class="bi bi-x-lg"></i></button>
   <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous image"><i class="bi bi-chevron-left"></i></button>
   <button class="lightbox-next" id="lightboxNext" aria-label="Next image"><i class="bi bi-chevron-right"></i></button>
@@ -379,6 +380,7 @@
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxTitle = document.getElementById('lightboxTitle');
     const lightboxLoc = document.getElementById('lightboxLoc');
+    const lightboxCounter = document.getElementById('lightboxCounter');
     const closeBtn = document.getElementById('lightboxClose');
     const prevBtn = document.getElementById('lightboxPrev');
     const nextBtn = document.getElementById('lightboxNext');
@@ -396,9 +398,18 @@
       if(index < 0 || index >= cards.length) return;
       currentIndex = index;
       const card = cards[currentIndex];
-      lightboxImg.src = card.dataset.src;
-      lightboxTitle.textContent = card.dataset.title;
-      lightboxLoc.innerHTML = '<i class="bi bi-geo-alt-fill"></i> ' + card.dataset.loc;
+      
+      lightboxImg.classList.add('fade-out');
+      setTimeout(() => {
+        lightboxImg.src = card.dataset.src;
+        lightboxTitle.textContent = card.dataset.title;
+        lightboxLoc.innerHTML = '<i class="bi bi-geo-alt-fill"></i> ' + card.dataset.loc;
+        if (lightboxCounter) {
+          lightboxCounter.textContent = `${currentIndex + 1} / ${cards.length}`;
+        }
+        lightboxImg.classList.remove('fade-out');
+      }, 120);
+
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -425,12 +436,37 @@
     prevBtn.addEventListener('click', showPrev);
     lightbox.querySelector('.lightbox-overlay').addEventListener('click', closeLightbox);
 
+    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       if(!lightbox.classList.contains('active')) return;
       if(e.key === 'Escape') closeLightbox();
       if(e.key === 'ArrowRight') showNext();
       if(e.key === 'ArrowLeft') showPrev();
     });
+
+    // Mobile swipe gestures
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const diff = touchEndX - touchStartX;
+      if (Math.abs(diff) > 45) {
+        if (diff < 0) {
+          showNext();
+        } else {
+          showPrev();
+        }
+      }
+    }
 
     // Initial listener on default cards
     initLightbox();
