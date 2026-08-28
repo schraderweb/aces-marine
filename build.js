@@ -18,14 +18,19 @@ function copyDir(src, dest) {
   }
 }
 
-const basePartials = [
+const indexPartials = [
+  '_head.html', '_nav.html', '_hero.html', '_about.html',
   '_expertise.html', '_reviews.html', '_projects.html',
   '_serving.html', '_map.html',
   '_footer.html', '_scripts.html',
 ];
 
-const indexPartials = ['_head.html', '_nav.html', '_hero.html', '_about.html', ...basePartials];
-const galleryPartials = ['_head.html', '_nav.html', '_gallery_hero.html', '_gallery_content.html', ...basePartials];
+const galleryPartials = [
+  '_head.html', '_nav.html', '_gallery_hero.html', '_gallery_content.html',
+  '_reviews.html',
+  '_serving.html', '_map.html',
+  '_footer.html', '_scripts.html',
+];
 
 const indexHtml = indexPartials
   .map(file => fs.readFileSync(path.join(SRC, file), 'utf-8'))
