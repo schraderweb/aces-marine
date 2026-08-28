@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "build": "node build.js",
-    "dev": "node scripts/dev-server.js",
+    "dev": "node build.js && node scripts/dev-server.js",
     "start": "node scripts/dev-server.js",
-    "db:setup": "node scripts/db-setup.js"
+    "db:setup": "node scripts/db-setup.js",
+    "studio": "npm --prefix studio run dev",
+    "studio:deploy": "npm --prefix studio run deploy"
   },
   "devDependencies": {},
   "dependencies": {

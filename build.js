@@ -18,26 +18,33 @@ function copyDir(src, dest) {
   }
 }
 
-// 1. Build HTML from partials
-const partials = [
-  '_head.html', '_nav.html', '_hero.html', '_about.html',
+const basePartials = [
   '_expertise.html', '_reviews.html', '_projects.html',
   '_serving.html', '_map.html',
   '_footer.html', '_scripts.html',
 ];
 
-const html = partials
+const indexPartials = ['_head.html', '_nav.html', '_hero.html', '_about.html', ...basePartials];
+const galleryPartials = ['_head.html', '_nav.html', '_gallery_hero.html', '_gallery_content.html', ...basePartials];
+
+const indexHtml = indexPartials
   .map(file => fs.readFileSync(path.join(SRC, file), 'utf-8'))
   .join('\n');
 
-// Write compiled site to root index.html (dev + committed artifact)
-fs.writeFileSync(path.join(ROOT, 'index.html'), html);
+const galleryHtml = galleryPartials
+  .map(file => fs.readFileSync(path.join(SRC, file), 'utf-8'))
+  .join('\n');
+
+// Write compiled sites to root
+fs.writeFileSync(path.join(ROOT, 'index.html'), indexHtml);
+fs.writeFileSync(path.join(ROOT, 'gallery.html'), galleryHtml);
 
 // 2. Assemble dist/
 fs.rmSync(DIST, { recursive: true, force: true });
 fs.mkdirSync(DIST, { recursive: true });
 
 fs.copyFileSync(path.join(ROOT, 'index.html'), path.join(DIST, 'index.html'));
+fs.copyFileSync(path.join(ROOT, 'gallery.html'), path.join(DIST, 'gallery.html'));
 
 for (const dir of ['images', 'css', 'js', 'assets']) {
   const srcPath = path.join(ROOT, dir);

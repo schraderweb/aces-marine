@@ -14,7 +14,7 @@ const scoresHandler = require('../api/submit.js');
 const DIST = path.join(__dirname, '..', 'dist');
 const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.mp4': 'video/mp4', '.ico': 'image/x-icon', '.webmanifest': 'application/manifest+json', '.json': 'application/json' };
 
-http.createServer((req, res) => {
+const server = http.createServer((req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
   if (url.pathname.startsWith('/api/')) {
     res.status = code => { res.statusCode = code; return res; };
@@ -28,9 +28,29 @@ http.createServer((req, res) => {
     return scoresHandler(req, res);
   }
   let filePath = path.join(DIST, url.pathname === '/' ? 'index.html' : url.pathname);
-  if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
+  if (!fs.existsSync(filePath) && fs.existsSync(filePath + '.html')) {
+    filePath = filePath + '.html';
+  } else if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
     filePath = path.join(DIST, 'index.html');
   }
   res.writeHead(200, { 'Content-Type': MIME[path.extname(filePath)] || 'application/octet-stream' });
   fs.createReadStream(filePath).pipe(res);
-}).listen(3001, () => console.log('Dev server (static + /api): http://localhost:3001'));
+});
+
+let port = parseInt(process.env.PORT || '3001', 10);
+
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.log(`Port ${port} is in use, trying port ${port + 1}...`);
+    port++;
+    server.listen(port);
+  } else {
+    console.error('Server error:', err);
+  }
+});
+
+server.on('listening', () => {
+  console.log(`Dev server (static + /api): http://localhost:${server.address().port}`);
+});
+
+server.listen(port);
